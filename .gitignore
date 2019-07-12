@@ -1,0 +1,5 @@
+#  Ignores all listed files
+
+/node_modules
+message_board.zip
+package-lock.json

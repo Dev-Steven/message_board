@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Message Board</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>The Dojo Message Board</h1>
+    <% if(messages.registration) { %>
+        <% for (var x of messages.registration) { %>
+         <h3><%= x %></h3>
+        <% } %>
+    <% } %>
+    <form action="/post" method="post" class="post_form">
+        <p>Name:</p> 
+        <input type="text" name="name">
+
+        <p>Message:</p>
+        <textarea name="message"cols="18" rows="4"></textarea>
+
+        <br>
+
+        <input type="submit" value="Post message">
+    </form>
+
+
+    <!-- Use a for loop -->
+    <%  for(x in all_posts) {%>
+    <div class="post">
+        <!-- posted content here...-->
+        <h2>Name: <%= all_posts[x].name %></h2>
+        <h2>Message: <%= all_posts[x].message %></h2>
+        <% for ( var i = 0; i<all_posts[x].comment.length; i++) { %>
+        <p>Name: <%= all_posts[x].comment[i].commentor %></p>
+        <p>Comment: <%= all_posts[x].comment[i].comment %></p>
+        <% } %>
+        <form action="/comment/<%= all_posts[x]._id %>" method="post">
+
+            <h4>Name:</h4> 
+            <input type="text" name="commentor">
+    
+            <h4>Comment:</h4>
+            <textarea name="comment"cols="18" rows="4"></textarea>
+    
+            <br>
+    
+            <input type="submit" value="Post comment">
+        </form>
+    </div>
+    <% } %>
+
+
+</body>
+</html>
